@@ -15,11 +15,7 @@ void main() {
       TimeUtils.removeTime(DateTime.now().subtract(Duration(days: 1))): 14,
       TimeUtils.removeTime(DateTime.now()): 5,
     },
-    colorThresholds: {
-      1: Colors.green[100],
-      10: Colors.green[300],
-      30: Colors.green[500]
-    },
+    colorThresholds: {1: Colors.green[100]!, 10: Colors.green[300]!, 30: Colors.green[500]!},
   );
 
   var app = MaterialApp(
@@ -29,20 +25,17 @@ void main() {
   );
 
   group('Testing HeatMapCalendar\'s widget tree', () {
-    testWidgets('should have only one HeatMapCalendar',
-        (WidgetTester tester) async {
+    testWidgets('should have only one HeatMapCalendar', (WidgetTester tester) async {
       await tester.pumpWidget(app);
       expect(find.byType(HeatMapCalendar), findsOneWidget);
     });
 
-    testWidgets('should have only one LayoutBuilder',
-        (WidgetTester tester) async {
+    testWidgets('should have only one LayoutBuilder', (WidgetTester tester) async {
       await tester.pumpWidget(app);
       expect(find.byType(LayoutBuilder), findsOneWidget);
     });
 
-    testWidgets('should have at least one Container',
-        (WidgetTester tester) async {
+    testWidgets('should have at least one Container', (WidgetTester tester) async {
       await tester.pumpWidget(app);
       expect(find.byType(Container), findsWidgets);
     });
@@ -57,8 +50,7 @@ void main() {
       expect(find.byType(WeekLabels), findsOneWidget);
     });
 
-    testWidgets('should have only one WeekColumnsBuilder',
-        (WidgetTester tester) async {
+    testWidgets('should have only one WeekColumnsBuilder', (WidgetTester tester) async {
       await tester.pumpWidget(app);
       expect(find.byType(WeekColumns), findsOneWidget);
     });
@@ -68,7 +60,7 @@ void main() {
     testWidgets('validating opacity and the displayDates flag', (tester) async {
       await tester.pumpWidget(app);
       StatefulElement element = tester.element(find.byKey(key));
-      HeatMapCalendarState state = element.state;
+      HeatMapCalendarState state = element.state as HeatMapCalendarState;
       bool displayDatesBefore = state.displayDates;
       double opacityBefore = state.currentOpacity;
 
@@ -87,17 +79,15 @@ void main() {
       testWidgets('should have 10 columns with given width', (tester) async {
         await tester.pumpWidget(app);
         StatefulElement element = tester.element(find.byKey(key));
-        HeatMapCalendarState state = element.state;
+        HeatMapCalendarState state = element.state as HeatMapCalendarState;
 
-        expect(
-            state.getColumnsToCreate(200 + subject.safetyMargin), equals(10));
+        expect(state.getColumnsToCreate(200 + subject.safetyMargin), equals(10));
       });
 
-      testWidgets('should throw assertion error if doesn\'t have enough space',
-          (tester) async {
+      testWidgets('should throw assertion error if doesn\'t have enough space', (tester) async {
         await tester.pumpWidget(app);
         StatefulElement element = tester.element(find.byKey(key));
-        HeatMapCalendarState state = element.state;
+        HeatMapCalendarState state = element.state as HeatMapCalendarState;
         expect(() => state.getColumnsToCreate(19), throwsAssertionError);
       });
     });
@@ -107,7 +97,7 @@ void main() {
         await tester.pumpWidget(app);
 
         StatefulElement element = tester.element(find.byKey(key));
-        HeatMapCalendarState state = element.state;
+        HeatMapCalendarState state = element.state as HeatMapCalendarState;
 
         bool displayDatesBefore = state.displayDates;
         state.onDoubleTap();
@@ -118,7 +108,7 @@ void main() {
         await tester.pumpWidget(app);
 
         StatefulElement element = tester.element(find.byKey(key));
-        HeatMapCalendarState state = element.state;
+        HeatMapCalendarState state = element.state as HeatMapCalendarState;
         double opacityBefore = state.currentOpacity;
         state.onDoubleTap();
         expect(opacityBefore, isNot(state.currentOpacity));

@@ -28,7 +28,7 @@ void main() {
     DateTime(2020, 6, 14),
   ];
 
-  WeekColumns getSubjectUnderTest(DateTime date, [Map<DateTime, int> input, Map<int, Color> colorThresholds]) {
+  WeekColumns getSubjectUnderTest(DateTime date, [Map<DateTime, int>? input, Map<int, Color>? colorThresholds]) {
     return WeekColumns(
       squareSize: 16,
       labelTextColor: Colors.black,
@@ -131,7 +131,7 @@ void main() {
   });
 
   Future _checkColoredDaysInWeek(DateTime date, Map<DateTime, int> inputDates, WidgetTester tester) async {
-    Map<int, Color> colorThresholds = {30: Colors.green[500]};
+    Map<int, Color> colorThresholds = {30: Colors.green[500]!};
 
     WeekColumns subject = getSubjectUnderTest(date, inputDates, colorThresholds);
 
@@ -146,11 +146,11 @@ void main() {
     Finder finder = find.byType(HeatMapDay);
 
     int daysColored = 0;
-    List<DateTime> checkedDays = inputDates.keys;
+    List<DateTime> checkedDays = inputDates.keys as List<DateTime>;
     for (Element element in finder.evaluate()) {
       HeatMapDay heatMapDay = element.widget as HeatMapDay;
-      Color color = heatMapDay.getColorFromThreshold();
-      DateTime currentDay = heatMapDay.currentDay;
+      Color? color = heatMapDay.getColorFromThreshold();
+      DateTime? currentDay = heatMapDay.currentDay;
       if (color == colorThresholds[30]) {
         if (!checkedDays.contains(currentDay)) {
           fail("HeatMapDay with day $currentDay is colored, but it's not in input");

@@ -43,9 +43,9 @@ class HeatMapCalendar extends StatefulWidget {
   final double safetyMargin;
 
   const HeatMapCalendar(
-      {Key key,
-      @required this.input,
-      @required this.colorThresholds,
+      {Key? key,
+      required this.input,
+      required this.colorThresholds,
       this.weekDaysLabels: TimeUtils.defaultWeekLabels,
       this.monthsLabels: TimeUtils.defaultMonthsLabels,
       this.squareSize: 16,

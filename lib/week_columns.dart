@@ -23,16 +23,16 @@ class WeekColumns extends StatelessWidget {
   final DateTime date;
 
   const WeekColumns(
-      {Key key,
-      @required this.squareSize,
-      @required this.labelTextColor,
-      @required this.input,
-      @required this.colorThresholds,
-      @required this.currentOpacity,
-      @required this.monthLabels,
-      @required this.dayTextColor,
-      @required this.columnsToCreate,
-      @required this.date})
+      {Key? key,
+      required this.squareSize,
+      required this.labelTextColor,
+      required this.input,
+      required this.colorThresholds,
+      required this.currentOpacity,
+      required this.monthLabels,
+      required this.dayTextColor,
+      required this.columnsToCreate,
+      required this.date})
       : super(key: key);
 
   /// The main logic for generating a list of columns representing a week
@@ -45,11 +45,11 @@ class WeekColumns extends StatelessWidget {
     int amount = totalDays + totalWeeks;
 
     // The list of columns that will be returned
-    List<Widget> columns = new List();
+    List<Widget> columns = [];
 
     // The list of items that will be used to form a week
-    List<Widget> columnItems = new List();
-    List<int> months = new List();
+    List<Widget> columnItems = [];
+    List<int> months = [];
 
     for (int i = 0; i < amount; i++) {
       // If true, it means that it should be a label,
@@ -71,7 +71,7 @@ class WeekColumns extends StatelessWidget {
         DateTime currentDate = dateList.first;
         dateList.removeAt(0);
 
-        final int value = (input[currentDate] == null) ? 0 : input[currentDate];
+        final int? value = (input[currentDate] == null) ? 0 : input[currentDate];
 
         HeatMapDay heatMapDay = HeatMapDay(
           value: value,
@@ -86,7 +86,7 @@ class WeekColumns extends StatelessWidget {
         // If the columnsItems has a length of 8, it means it should be ended.
         if (columnItems.length == 8) {
           columns.add(Column(children: columnItems));
-          columnItems = new List();
+          columnItems = [];
         }
       }
     }

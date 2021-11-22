@@ -17,26 +17,20 @@ class TimeUtils {
     "Dec",
   ];
 
-  static const List<String> defaultWeekLabels = [
-    'S',
-    'M',
-    'T',
-    'W',
-    'T',
-    'F',
-    'S'
-  ];
+  static const List<String> defaultWeekLabels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
   /// Obtains the first day of the current week,
   /// based on user's current day
   static DateTime firstDayOfTheWeek(DateTime today) {
-    return safeSubtract(today, Duration(
-        days: (today.weekday % DateTime.daysPerWeek),
-        hours: today.hour,
-        minutes: today.minute,
-        seconds: today.second,
-        microseconds: today.microsecond,
-        milliseconds: today.millisecond));
+    return safeSubtract(
+        today,
+        Duration(
+            days: (today.weekday % DateTime.daysPerWeek),
+            hours: today.hour,
+            minutes: today.minute,
+            seconds: today.second,
+            microseconds: today.microsecond,
+            milliseconds: today.millisecond));
   }
 
   static DateTime firstDayOfCalendar(DateTime day, int columnsAmount) {
@@ -50,14 +44,14 @@ class TimeUtils {
 
   /// Returns date without timezone info (UTC format)
   static DateTime removeTZ(DateTime dateTime) {
-    return DateTime.utc(dateTime.year, dateTime.month, dateTime.day, dateTime.hour, dateTime.minute,
-        dateTime.second, dateTime.millisecond, dateTime.millisecond);
+    return DateTime.utc(dateTime.year, dateTime.month, dateTime.day, dateTime.hour, dateTime.minute, dateTime.second,
+        dateTime.millisecond, dateTime.millisecond);
   }
 
   /// Returns date with local timezone
   static DateTime addTZ(DateTime dateTime) {
-    return DateTime(dateTime.year, dateTime.month, dateTime.day, dateTime.hour, dateTime.minute,
-        dateTime.second, dateTime.millisecond, dateTime.microsecond);
+    return DateTime(dateTime.year, dateTime.month, dateTime.day, dateTime.hour, dateTime.minute, dateTime.second,
+        dateTime.millisecond, dateTime.microsecond);
   }
 
   /// Subtract duration without timezone.
@@ -78,7 +72,7 @@ class TimeUtils {
   static List<DateTime> datesBetween(DateTime startDate, DateTime finishDate) {
     assert(startDate.isBefore(finishDate));
 
-    List<DateTime> datesList = new List();
+    List<DateTime> datesList = [];
     DateTime aux = startDate;
     do {
       datesList.add(aux);

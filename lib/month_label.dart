@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class MonthLabel extends StatelessWidget {
   const MonthLabel({
-    Key key,
-    @required this.size,
+    Key? key,
+    required this.size,
     this.text: "",
-    @required this.textColor,
+    required this.textColor,
   }) : super(key: key);
 
   final double size;

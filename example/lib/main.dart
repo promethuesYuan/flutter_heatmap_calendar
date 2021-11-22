@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
                   TimeUtils.removeTime(DateTime.now().subtract(Duration(days: 1))): 14,
                   TimeUtils.removeTime(DateTime.now()): 5,
                 },
-                colorThresholds: {1: Colors.green[100], 10: Colors.green[300], 30: Colors.green[500]},
+                colorThresholds: {1: Colors.green[100]!, 10: Colors.green[300]!, 30: Colors.green[500]!},
                 weekDaysLabels: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
                 monthsLabels: [
                   "",
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
                 squareSize: 15.0,
                 textOpacity: 0.3,
                 labelTextColor: Colors.blueGrey,
-                dayTextColor: Colors.blue[500],
+                dayTextColor: Colors.blue[500]!,
               ),
             ),
           ),
