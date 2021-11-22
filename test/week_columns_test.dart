@@ -28,8 +28,7 @@ void main() {
     DateTime(2020, 6, 14),
   ];
 
-  WeekColumns getSubjectUnderTest(DateTime date,
-      [Map<DateTime, int> input, Map<int, Color> colorThresholds]) {
+  WeekColumns getSubjectUnderTest(DateTime date, [Map<DateTime, int> input, Map<int, Color> colorThresholds]) {
     return WeekColumns(
       squareSize: 16,
       labelTextColor: Colors.black,
@@ -70,10 +69,7 @@ void main() {
       testWidgets('should have only one Row', (tester) async {
         await tester.pumpWidget(getApp(day));
 
-        expect(
-            find.descendant(
-                of: find.byType(WeekColumns), matching: find.byType(Row)),
-            findsOneWidget);
+        expect(find.descendant(of: find.byType(WeekColumns), matching: find.byType(Row)), findsOneWidget);
       });
 
       testWidgets('should have the given columns', (tester) async {
@@ -82,9 +78,7 @@ void main() {
         expect(find.byType(Column), findsNWidgets(columnAmount));
       });
 
-      testWidgets(
-          'should have the amount of MonthLabel widgets equal to the given amount of columns',
-          (tester) async {
+      testWidgets('should have the amount of MonthLabel widgets equal to the given amount of columns', (tester) async {
         await tester.pumpWidget(getApp(day));
 
         expect(find.byType(MonthLabel), findsNWidgets(columnAmount));
@@ -97,11 +91,10 @@ void main() {
 
         int i = DateTime.daysPerWeek - day.weekday - 1;
         if (day.weekday == 7) {
-            i = 6;
+          i = 6;
         }
 
-        expect(find.byType(HeatMapDay),
-            findsNWidgets((7 * columnAmount) - (i)));
+        expect(find.byType(HeatMapDay), findsNWidgets((7 * columnAmount) - (i)));
       });
     });
   });
@@ -109,11 +102,8 @@ void main() {
   weekDays.forEach((day) {
     group('Unit testing $day', () {
       group('getCalendarDates method', () {
-        test(
-            'should have the given amount of columns when result is divided by the amount of days in a week',
-            () {
-          List<DateTime> calendarDates =
-              getSubjectUnderTest(day).getCalendarDates(columnAmount);
+        test('should have the given amount of columns when result is divided by the amount of days in a week', () {
+          List<DateTime> calendarDates = getSubjectUnderTest(day).getCalendarDates(columnAmount);
           expect(calendarDates.length, greaterThan(0));
           int daysAmount = calendarDates.length;
           expect(columnAmount, equals((daysAmount / 7).ceil()));
@@ -140,8 +130,7 @@ void main() {
     });
   });
 
-  Future _checkColoredDaysInWeek(
-      DateTime date, Map<DateTime, int> inputDates, WidgetTester tester) async {
+  Future _checkColoredDaysInWeek(DateTime date, Map<DateTime, int> inputDates, WidgetTester tester) async {
     Map<int, Color> colorThresholds = {30: Colors.green[500]};
 
     WeekColumns subject = getSubjectUnderTest(date, inputDates, colorThresholds);
@@ -157,11 +146,11 @@ void main() {
     Finder finder = find.byType(HeatMapDay);
 
     int daysColored = 0;
-    List<int> checkedDays = inputDates.keys.map((d) => d.day).toList();
+    List<DateTime> checkedDays = inputDates.keys;
     for (Element element in finder.evaluate()) {
       HeatMapDay heatMapDay = element.widget as HeatMapDay;
       Color color = heatMapDay.getColorFromThreshold();
-      int currentDay = heatMapDay.currentDay;
+      DateTime currentDay = heatMapDay.currentDay;
       if (color == colorThresholds[30]) {
         if (!checkedDays.contains(currentDay)) {
           fail("HeatMapDay with day $currentDay is colored, but it's not in input");
