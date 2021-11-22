@@ -77,7 +77,7 @@ class WeekColumns extends StatelessWidget {
           value: value,
           thresholds: colorThresholds,
           size: squareSize,
-          currentDay: currentDate.day,
+          currentDay: currentDate,
           opacity: currentOpacity,
           textColor: dayTextColor,
         );

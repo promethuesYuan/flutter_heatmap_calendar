@@ -88,32 +88,28 @@ class HeatMapCalendarState extends State<HeatMapCalendar> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return InkWell(
-          onDoubleTap: onDoubleTap,
-          child: Container(
-            height: (widget.squareSize + HeatMapCalendar.EDGE_SIZE) *
-                (HeatMapCalendar.ROW_COUNT + 1),
-            width: constraints.maxWidth,
-            child: Row(
-              children: <Widget>[
-                WeekLabels(
-                  weekDaysLabels: widget.weekDaysLabels,
-                  squareSize: widget.squareSize,
-                  labelTextColor: widget.labelTextColor,
-                ),
-                WeekColumns(
-                  squareSize: widget.squareSize,
-                  labelTextColor: widget.labelTextColor,
-                  input: widget.input,
-                  colorThresholds: widget.colorThresholds,
-                  currentOpacity: currentOpacity,
-                  monthLabels: widget.monthsLabels,
-                  dayTextColor: widget.dayTextColor,
-                  columnsToCreate: getColumnsToCreate(constraints.maxWidth) - 1,
-                  date: DateTime.now(),
-                )
-              ],
-            ),
+        return Container(
+          height: (widget.squareSize + HeatMapCalendar.EDGE_SIZE) * (HeatMapCalendar.ROW_COUNT + 1),
+          width: constraints.maxWidth,
+          child: Row(
+            children: <Widget>[
+              WeekLabels(
+                weekDaysLabels: widget.weekDaysLabels,
+                squareSize: widget.squareSize,
+                labelTextColor: widget.labelTextColor,
+              ),
+              WeekColumns(
+                squareSize: widget.squareSize,
+                labelTextColor: widget.labelTextColor,
+                input: widget.input,
+                colorThresholds: widget.colorThresholds,
+                currentOpacity: currentOpacity,
+                monthLabels: widget.monthsLabels,
+                dayTextColor: widget.dayTextColor,
+                columnsToCreate: getColumnsToCreate(constraints.maxWidth) - 1,
+                date: DateTime.now(),
+              )
+            ],
           ),
         );
       },

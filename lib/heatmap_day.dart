@@ -1,3 +1,4 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 
 class HeatMapDay extends StatelessWidget {
@@ -5,7 +6,7 @@ class HeatMapDay extends StatelessWidget {
   final double size;
   final Map<int, Color> thresholds;
   final Color defaultColor;
-  final int currentDay;
+  final DateTime currentDay;
   final double opacity;
   final Duration animationDuration;
   final Color textColor;
@@ -43,18 +44,17 @@ class HeatMapDay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      height: size,
-      width: size,
-      color: getColorFromThreshold(),
-      margin: EdgeInsets.all(2.0),
-      child: AnimatedOpacity(
-        opacity: opacity,
-        duration: animationDuration,
-        child: Text(
-          currentDay.toString(),
-          style: TextStyle(fontWeight: fontWeight, color: textColor),
+    return Tooltip(
+      message: "$value次测试，在${formatDate(currentDay, [yyyy, "/", mm, "/", dd])}",
+      child: Container(
+        alignment: Alignment.center,
+        height: size,
+        width: size,
+        color: getColorFromThreshold(),
+        margin: EdgeInsets.all(2.0),
+        child: AnimatedOpacity(
+          opacity: opacity,
+          duration: animationDuration,
         ),
       ),
     );
