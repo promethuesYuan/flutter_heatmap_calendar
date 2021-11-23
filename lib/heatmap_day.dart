@@ -50,7 +50,10 @@ class HeatMapDay extends StatelessWidget {
         alignment: Alignment.center,
         height: size,
         width: size,
-        color: getColorFromThreshold(),
+        decoration: BoxDecoration(
+          color: getColorFromThreshold(),
+          borderRadius: BorderRadius.circular(2),
+        ),
         margin: EdgeInsets.all(2.0),
         child: AnimatedOpacity(
           opacity: opacity,

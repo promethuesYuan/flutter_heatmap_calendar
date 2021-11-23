@@ -57,7 +57,9 @@ class WeekColumns extends StatelessWidget {
       if (i % 8 == 0) {
         String month = "";
 
-        if (dateList.isNotEmpty && !months.contains(dateList.first.month)) {
+        if (dateList.isNotEmpty &&
+            !months.contains(dateList.first.month) &&
+            (dateList.length > 7 && (dateList.first.month == dateList[6].month))) {
           month = monthLabels[dateList.first.month];
           months.add(dateList.first.month);
         }
