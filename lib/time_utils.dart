@@ -23,14 +23,10 @@ class TimeUtils {
   /// based on user's current day
   static DateTime firstDayOfTheWeek(DateTime today) {
     return safeSubtract(
-        today,
+        TimeUtils.removeTime(today),
         Duration(
-            days: (today.weekday % DateTime.daysPerWeek),
-            hours: today.hour,
-            minutes: today.minute,
-            seconds: today.second,
-            microseconds: today.microsecond,
-            milliseconds: today.millisecond));
+          days: (today.weekday % DateTime.daysPerWeek),
+        ));
   }
 
   static DateTime firstDayOfCalendar(DateTime day, int columnsAmount) {
