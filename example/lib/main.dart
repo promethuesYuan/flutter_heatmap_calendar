@@ -1,10 +1,29 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:heatmap_calendar/heatmap_calendar.dart';
 import 'package:heatmap_calendar/time_utils.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Map<DateTime, int> _input = {};
+
+  @override
+  void initState() {
+    super.initState();
+    var now = DateTime.now();
+    var random = Random();
+    for (int i = 0; i < 365; i++) {
+      _input[TimeUtils.removeTime(now.subtract(Duration(days: i)))] = random.nextInt(50);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,14 +34,9 @@ class MyApp extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: HeatMapCalendar(
-                input: {
-                  TimeUtils.removeTime(DateTime.now().subtract(Duration(days: 3))): 5,
-                  TimeUtils.removeTime(DateTime.now().subtract(Duration(days: 2))): 35,
-                  TimeUtils.removeTime(DateTime.now().subtract(Duration(days: 1))): 14,
-                  TimeUtils.removeTime(DateTime.now()): 5,
-                },
+                input: _input,
                 colorThresholds: {1: Colors.green[100]!, 10: Colors.green[300]!, 30: Colors.green[500]!},
-                weekDaysLabels: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+                weekDaysLabels: ['', '1', '', '3', '', '5', ''],
                 monthsLabels: [
                   "",
                   "1月",
