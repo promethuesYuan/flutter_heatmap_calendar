@@ -33,7 +33,7 @@ class HeatMapDay extends StatelessWidget {
     Color? color = defaultColor;
     if (value != null) {
       thresholds!.forEach((mapKey, mapColor) {
-        if (value!/*!*//*!*/ >= mapKey) {
+        if (value! >= mapKey) {
           color = mapColor;
         }
       });
